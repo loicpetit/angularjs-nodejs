@@ -1,0 +1,1 @@
+console.log('AngularJS NodeJS Rest Server');

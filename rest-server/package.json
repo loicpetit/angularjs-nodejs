@@ -1,0 +1,21 @@
+{
+  "name": "angularjs-nodejs-rest-server",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "Rest server of an angular application",
+  "keywords": [],
+  "dependencies": {
+    "express": "^4.14.0",
+    "moment": "^2.18.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.0.36",
+    "@types/jasmine": "^2.5.53",
+    "jasmine-node": "^1.14.5"
+  },
+  "main": "app/main/start.js",
+  "scripts": {
+    "start": "node app/main/start.js",
+    "test": "jasmine-node app/test"
+  }
+}
