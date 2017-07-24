@@ -16,6 +16,7 @@
   "main": "app/main/start.js",
   "scripts": {
     "start": "node app/main/start.js",
-    "test": "jasmine-node app/test"
+    "debug": "node --debug-brk app/main/start.js",
+    "test": "node --debug-brk node_modules/jasmine-node/lib/jasmine-node/cli.js app/test"
   }
 }

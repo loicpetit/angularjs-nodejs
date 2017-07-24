@@ -106,4 +106,24 @@ describe('util', function () {
         expect(child.sayBye()).toEqual(BYE);
     });
 
+    it('should extends and call parent method', function(){
+        //  given
+        Child = util.extends(
+            Parent,
+            function (firstname, name) {
+                this.super.call(this, firstname);
+                this.name = name;
+            },
+            {
+                sayHi: function () {
+                    return this.super.prototype.sayHi.call(this) + HI_CHILD;
+                }
+            }
+        );
+        //  when
+        var child = new Child(FIRSTNAME, NAME);
+        //  then
+        expect(child.sayHi()).toEqual(HI + HI_CHILD);
+    })
+
 });
