@@ -1,28 +1,21 @@
-const util = require('../common/util');
 const Entite = require('../common/entite');
 
-var Tache = util.extends(
-    Entite,
-    function () {
+module.exports = class Tache extends Entite {
+    constructor() {
+        super();
         this._libelle = null;
-    },
-    {
-        getLibelle: function () {
-            return this._libelle;
-        },
-        setLibelle: function(libelle){
-            this._libelle = libelle;
-        },
-        cloneTo: function(tache){
-            this.super.prototype.cloneTo.call(this, tache);
-            tache.setLibelle(this.getLibelle());
-        },
-        clone: function(){
-            var clone = new Tache();
-            this.cloneTo(clone);
-            return clone;
-        }
     }
-);
+    get libelle() { return this._libelle; }
+    set libelle(value) { this._libelle = value; }
 
-module.exports = Tache;
+    cloneTo(tache) {
+        super.cloneTo(tache);
+        tache.libelle = this.libelle;
+    }
+
+    clone() {
+        var clone = new Tache();
+        this.cloneTo(clone);
+        return clone;
+    }
+};;

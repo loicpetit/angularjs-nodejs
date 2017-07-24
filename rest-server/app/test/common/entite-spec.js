@@ -10,28 +10,38 @@ describe('Entite', function () {
         dateCreation = moment({ year: 2016, month: 6, day: 5 });
         dateModification = moment({ year: 2017, month: 7, day: 6 });
         entite = new Entite();
-        entite.setId(id);
-        entite.setDateCreation(dateCreation);
-        entite.setDateModification(dateModification);
-        
+        entite.id = id;
+        entite.dateCreation = dateCreation;
+        entite.dateModification  = dateModification;
+
     });
 
     it('should set properties', function () {
-        expect(entite.getId()).toEqual(id);
-        expect(entite.getDateCreation()).toEqual(dateCreation);
-        expect(entite.getDateModification()).toEqual(dateModification);
+        expect(entite.id).toEqual(id);
+        expect(entite.dateCreation).toEqual(dateCreation);
+        expect(entite.dateModification).toEqual(dateModification);
     });
 
-    it('should clone to another entity', function(){
+    it('should clone to another entity', function () {
         var cloneId = 2;
+        var cloneDateCreation = moment({ year: 2017, month: 6, day: 5 });
+        var cloneDateModification = moment({ year: 2018, month: 6, day: 5 });
         var clone = new Entite();
         entite.cloneTo(clone);
-        expect(clone.getId()).toEqual(entite.getId());
-        expect(clone.getDateCreation()).toEqual(entite.getDateCreation());
-        expect(clone.getDateModification()).toEqual(entite.getDateModification());
+        expect(clone.id).toEqual(entite.id);
+        expect(clone.dateCreation).toEqual(entite.dateCreation);
+        expect(clone.dateModification).toEqual(entite.dateModification);
         expect(cloneId).not.toEqual(id);
-        clone.setId(cloneId);
-        expect(clone.getId()).toEqual(cloneId);
-        expect(entite.getId()).toEqual(id);
+        expect(cloneDateCreation).not.toEqual(dateCreation);
+        expect(cloneDateModification).not.toEqual(dateModification);
+        clone.id = cloneId;
+        clone.dateCreation = cloneDateCreation;
+        clone.dateModification = cloneDateModification;
+        expect(clone.id).toEqual(cloneId);
+        expect(clone.dateCreation).toEqual(cloneDateCreation);
+        expect(clone.dateModification).toEqual(cloneDateModification);
+        expect(entite.id).toEqual(id);
+        expect(entite.dateCreation).toEqual(dateCreation);
+        expect(entite.dateModification).toEqual(dateModification);
     });
 });
