@@ -1,8 +1,10 @@
-const moment = require('moment');
+const TACHE_ERRORS = require('../../main/taches/tache-errors');
+
 const Tache = require('../../main/taches/tache');
 const TacheCriteria = require('../../main/taches/tache-criteria');
+
+const moment = require('moment');
 const tacheDao = require('../../main/taches/tache-dao');
-const TacheErrors = require('../../main/taches/tache-errors');
 
 describe('Tache', function () {
 
@@ -46,7 +48,7 @@ describe('Tache', function () {
             tacheDao.find(criteria);
         };
         //  then
-        expect(find).toThrow(TacheErrors.T1);
+        expect(find).toThrow(TACHE_ERRORS.T1);
     });
 
     it('should raise an error if several results when find', function () {
@@ -57,7 +59,7 @@ describe('Tache', function () {
             tacheDao.find(criteria);
         };
         //  then
-        expect(find).toThrow(TacheErrors.T2);
+        expect(find).toThrow(TACHE_ERRORS.T2);
     });
     
     it('should find all', function () {
@@ -119,7 +121,7 @@ describe('Tache', function () {
             tacheDao.save(tacheToUpdate);
         };
         //  then
-        expect(save).toThrow(TacheErrors.T1);
+        expect(save).toThrow(TACHE_ERRORS.T1);
 
     });
 
@@ -154,7 +156,7 @@ describe('Tache', function () {
             tacheDao.delete(-1);
         };
         //  then
-        expect(save).toThrow(TacheErrors.T1);
+        expect(save).toThrow(TACHE_ERRORS.T1);
     });
 
 });

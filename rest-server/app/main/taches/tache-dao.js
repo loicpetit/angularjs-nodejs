@@ -1,5 +1,4 @@
-const TacheCriteria = require('./tache-criteria');
-const TacheErrors = require('./tache-errors');
+const TACHE_ERRORS = require('./tache-errors');
 
 exports._taches = [];
 
@@ -23,7 +22,7 @@ exports.delete = function (tacheId) {
         }
     }
     if(tacheIndex === null){
-        throw TacheErrors.T1;
+        throw TACHE_ERRORS.T1;
     }
     var tache = exports._taches.splice(tacheIndex, 1)[0];
     delete tache;
@@ -32,9 +31,9 @@ exports.delete = function (tacheId) {
 exports.find = function (criteria) {
     var taches = exports.findAll(criteria);
     if (taches.length == 0) {
-        throw TacheErrors.T1;
+        throw TACHE_ERRORS.T1;
     } else if (taches.length > 1) {
-        throw TacheErrors.T2;
+        throw TACHE_ERRORS.T2;
     }
     return taches[0];
 }

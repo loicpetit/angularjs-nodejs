@@ -1,5 +1,6 @@
-const moment = require('moment');
 const Tache = require('../../main/taches/tache');
+
+const moment = require('moment');
 
 describe('Tache', function () {
 

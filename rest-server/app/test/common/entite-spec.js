@@ -1,5 +1,6 @@
-const moment = require('moment');
 const Entite = require('../../main/common/entite');
+
+const moment = require('moment');
 
 describe('Entite', function () {
     var id, dateCreation, dateModification;
