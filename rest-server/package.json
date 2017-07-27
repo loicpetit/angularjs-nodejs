@@ -11,12 +11,14 @@
   "devDependencies": {
     "@types/express": "^4.0.36",
     "@types/jasmine": "^2.5.53",
-    "jasmine-node": "^1.14.5"
+    "@types/moment": "^2.13.0",
+    "jasmine": "^2.6.0",
+    "jasmine-mockdate": "^0.1.0"
   },
   "main": "app/main/start.js",
   "scripts": {
     "start": "node app/main/start.js",
     "debug": "node --debug-brk app/main/start.js",
-    "test": "node --debug-brk node_modules/jasmine-node/lib/jasmine-node/cli.js app/test"
+    "test": "node --debug-brk node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=./jasmine.json"
   }
 }
