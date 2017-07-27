@@ -6,7 +6,7 @@ const TacheCriteria = require('../../main/taches/tache-criteria');
 const moment = require('moment');
 const tacheDao = require('../../main/taches/tache-dao');
 
-describe('Tache', function () {
+describe('Tache dao', function () {
 
     var tache1, tache2, tache3;
 
