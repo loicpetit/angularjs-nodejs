@@ -7,6 +7,7 @@ describe('Entite', function () {
     var entite;
 
     beforeEach(function () {
+        //  creer une entite
         id = 1;
         dateCreation = moment({ year: 2016, month: 6, day: 5 });
         dateModification = moment({ year: 2017, month: 7, day: 6 });
@@ -14,7 +15,6 @@ describe('Entite', function () {
         entite.id = id;
         entite.dateCreation = dateCreation;
         entite.dateModification  = dateModification;
-
     });
 
     it('should set properties', function () {

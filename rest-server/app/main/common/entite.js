@@ -10,7 +10,7 @@ module.exports = class Entite {
     set dateCreation(value) { this._dateCreation = value; }
     get dateModification() { return this._dateModification; }
     set dateModification(value) { this._dateModification = value; }
-
+ 
     cloneTo(entite) {
         entite.id = this.id;
         entite.dateCreation = this.dateCreation;
