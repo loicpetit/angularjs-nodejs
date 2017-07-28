@@ -1,7 +1,7 @@
-const Entite = require('../../main/common/entite');
+const Entite = require('../../main/modele/entite');
 
 const moment = require('moment');
-const entiteProcessus = require('../../main/common/entite-processus');
+const entiteProcessus = require('../../main/processus/entite-processus');
 
 describe('Entite', function () {
     var entite;

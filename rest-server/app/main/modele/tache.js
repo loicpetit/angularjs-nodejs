@@ -1,4 +1,4 @@
-const Entite = require('../common/entite');
+const Entite = require('./entite');
 
 module.exports = class Tache extends Entite {
     constructor() {

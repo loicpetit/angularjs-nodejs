@@ -1,4 +1,4 @@
-const Tache = require('../../main/taches/tache');
+const Tache = require('../../main/modele/tache');
 
 const moment = require('moment');
 

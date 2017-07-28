@@ -1,5 +1,5 @@
-const entiteProcessus = require('../common/entite-processus');
-const tacheDao = require('./tache-dao');
+const entiteProcessus = require('./entite-processus');
+const tacheDao = require('../dao/tache-dao');
 
 exports.save = function(tache){
     entiteProcessus.updateMetadata(tache);

@@ -1,10 +1,10 @@
-const TACHE_ERRORS = require('../../main/taches/tache-errors');
+const TACHE_ERREURS = require('../../main/erreurs/tache-erreurs');
 
-const Tache = require('../../main/taches/tache');
-const TacheCriteria = require('../../main/taches/tache-criteria');
+const Tache = require('../../main/modele/tache');
+const TacheCriteria = require('../../main/dao/criteria/tache-criteria');
 
 const moment = require('moment');
-const tacheDao = require('../../main/taches/tache-dao');
+const tacheDao = require('../../main/dao/tache-dao');
 
 describe('Tache dao', function () {
 
@@ -48,7 +48,7 @@ describe('Tache dao', function () {
             tacheDao.find(criteria);
         };
         //  then
-        expect(find).toThrow(TACHE_ERRORS.T1);
+        expect(find).toThrow(TACHE_ERREURS.T1);
     });
 
     it('should raise an error if several results when find', function () {
@@ -59,7 +59,7 @@ describe('Tache dao', function () {
             tacheDao.find(criteria);
         };
         //  then
-        expect(find).toThrow(TACHE_ERRORS.T2);
+        expect(find).toThrow(TACHE_ERREURS.T2);
     });
     
     it('should find all', function () {
@@ -121,7 +121,7 @@ describe('Tache dao', function () {
             tacheDao.save(tacheToUpdate);
         };
         //  then
-        expect(save).toThrow(TACHE_ERRORS.T1);
+        expect(save).toThrow(TACHE_ERREURS.T1);
 
     });
 
@@ -156,7 +156,7 @@ describe('Tache dao', function () {
             tacheDao.delete(-1);
         };
         //  then
-        expect(save).toThrow(TACHE_ERRORS.T1);
+        expect(save).toThrow(TACHE_ERREURS.T1);
     });
 
 });

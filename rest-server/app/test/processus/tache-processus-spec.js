@@ -1,5 +1,5 @@
-const Tache = require('../../main/taches/tache');
-const tacheProcessus = require('../../main/taches/tache-processus');
+const Tache = require('../../main/modele/tache');
+const tacheProcessus = require('../../main/processus/tache-processus');
 
 describe('Tache processus', function(){
 

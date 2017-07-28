@@ -1,4 +1,4 @@
-const CustomError = require('../common/custom-error');
+const CustomError = require('./custom-erreur');
 
 module.exports = {
     'T1' : new CustomError("T1", "La tâche n'existe pas"),

@@ -1,4 +1,4 @@
-const Entite = require('../../main/common/entite');
+const Entite = require('../../main/modele/entite');
 
 const moment = require('moment');
 
