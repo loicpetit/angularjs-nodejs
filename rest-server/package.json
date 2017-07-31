@@ -13,7 +13,8 @@
     "@types/jasmine": "^2.5.53",
     "@types/moment": "^2.13.0",
     "jasmine": "^2.6.0",
-    "jasmine-mockdate": "^0.1.0"
+    "jasmine-mockdate": "^0.1.0",
+    "request": "^2.81.0"
   },
   "main": "app/main/start.js",
   "scripts": {
