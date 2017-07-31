@@ -1,6 +1,6 @@
 const ERREURS = require('../erreurs/tache-erreurs');
 
-exports._taches = [];
+var store = require('./store');
 
 exports.save = function (tache) {
     if (tache.id === null) {
@@ -8,14 +8,14 @@ exports.save = function (tache) {
     } else {
         exports.delete(tache.id);
     }
-    exports._taches.push(tache);
+    store.taches.push(tache);
     return tache;
 }
 
 exports.delete = function (tacheId) {
     var tacheIndex = null;
-    for(var i in exports._taches){
-        var tache = exports._taches[i];
+    for(var i in store.taches){
+        var tache = store.taches[i];
         if(tache.id === tacheId){
             tacheIndex = i;
             break;
@@ -24,7 +24,7 @@ exports.delete = function (tacheId) {
     if(tacheIndex === null){
         throw ERREURS.T1;
     }
-    var tache = exports._taches.splice(tacheIndex, 1)[0];
+    var tache = store.taches.splice(tacheIndex, 1)[0];
     delete tache;
 }
 
@@ -39,7 +39,7 @@ exports.find = function (criteria) {
 }
 
 exports.findAll = function (criteria) {
-    var taches = exports._taches.filter(function (tache) {
+    var taches = store.taches.filter(function (tache) {
         if (criteria) {
             return matchCriteria(tache, criteria);
         }
@@ -79,7 +79,7 @@ function compareById(tache1, tache2) {
 
 function computeId() {
     var maxId = 0;
-    for (var tache of exports._taches) {
+    for (var tache of store.taches) {
         if (maxId < tache.id) {
             maxId = tache.id;
         }

@@ -4,6 +4,7 @@ const Tache = require('../../main/modele/tache');
 const TacheCriteria = require('../../main/dao/criteria/tache-criteria');
 
 const moment = require('moment');
+const store = require('../../main/dao/store');
 const tacheDao = require('../../main/dao/tache-dao');
 
 describe('Tache dao', function () {
@@ -27,7 +28,7 @@ describe('Tache dao', function () {
         tache3.dateCreation = moment({ year: 2016, month: 5, day: 5 });
         tache3.dateModification = moment({ year: 2016, month: 6, day: 6 });
         tache3.libelle = 'tache 3 commune';
-        tacheDao._taches = [tache1, tache2, tache3];
+        store.taches = [tache1, tache2, tache3];
     });
     
     it('should find tache by id', function () {
@@ -94,7 +95,7 @@ describe('Tache dao', function () {
         //  when
         var tacheSaved = tacheDao.save(tacheToSave);
         //  then
-        expect(tacheDao._taches.length).toEqual(4);
+        expect(store.taches.length).toEqual(4);
         expect(tacheSaved.id).toEqual(tache3.id + 1);
         expect(tacheSaved).toBe(tacheToSave);
     });
@@ -107,7 +108,7 @@ describe('Tache dao', function () {
         var tacheUpdated = tacheDao.save(tacheToUpdate);
         var tacheFound = tacheDao.find(new TacheCriteria({id: tacheToUpdate.id}));
         //  then
-        expect(tacheDao._taches.length).toEqual(3);
+        expect(store.taches.length).toEqual(3);
         expect(tacheFound.libelle).toEqual(tacheToUpdate.libelle);
         expect(tacheUpdated).toBe(tacheToUpdate);
     });
@@ -144,8 +145,8 @@ describe('Tache dao', function () {
         //  when
         tacheDao.delete(id);
         //  then
-        expect(tacheDao._taches.length).toEqual(2);
-        for(var tache of tacheDao._taches){
+        expect(store.taches.length).toEqual(2);
+        for(var tache of store.taches){
             expect(tache.id).not.toEqual(id);
         }
     });
