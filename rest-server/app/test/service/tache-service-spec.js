@@ -101,4 +101,16 @@ describe('Tache service', function(){
             done();
         });
     });
+
+    it('should delete tache', function(done){
+        var tacheToDeleteId = tache1.id;
+        serverDelete('/taches/'+tacheToDeleteId, function(res, body){
+            expect(res).toBeStatusNoContent();
+            expect(store.taches.length).toEqual(2);
+            for(var tache of store.taches){
+                expect(tache.id).not.toEqual(tacheToDeleteId);
+            }
+            done();
+        });
+    });
 });

@@ -72,6 +72,10 @@ exports.update = function(req, res){
 };
 
 exports.delete = function(req, res){
+    //  delete tache
+    var tacheId = parser.toInt(req.params.id);
+    tacheProcessus.delete(tacheId);
+    //  respond
     res.statusCode = 204;
     res.send();
 };
