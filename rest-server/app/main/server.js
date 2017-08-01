@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const http = require('http');
 
@@ -9,12 +10,18 @@ var port = 8080;
 var running = false;
 var app = express();
 
+//  Middlewares
+app.use(bodyParser.json());
+
 //  RestAPI
 app.get('/', function (req, res) {
     res.send('Welcome AngularJS NodeJS Rest API');
 });
 app.get('/taches', tacheService.findAll);
+app.post('/taches', tacheService.create)
 app.get('/taches/:id', tacheService.find);
+app.put('/tache/:id', tacheService.update);
+app.delete('/tache/:id', tacheService.delete);
 
 //  Gestion d'erreurs
 function logError(err, req, res, next){
