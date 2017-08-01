@@ -36,6 +36,19 @@
         })
     }
 
+    // servicePath: the path after the baseUrl (ex: http://localhost:500/taches/2 , baseUrl = 'http://localhost:500', servicePath = '/taches/2')
+    //  jsonObject is the object to send to the server, it will be parsed in json
+    // callback : function(response, body)
+    global.serverPut = function (servicePath, jsonObject, callback) {
+        request.put({
+            url: baseUrl + servicePath,
+            body: jsonObject,
+            json: true
+        }, function (error, response, body) {
+            manageServerResponse(error, response, body, callback);
+        })
+    }
+
     function manageServerResponse(error, response, body, callback) {
         if (error) {
             throw new Error(error);
