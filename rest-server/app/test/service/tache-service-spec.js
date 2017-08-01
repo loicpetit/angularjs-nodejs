@@ -13,9 +13,13 @@ describe('Tache service', function(){
         //  init store
         tache1 = new Tache();
         tache1.id = 1;
+        tache1.dateCreation = moment({ year: 2016, month: 5, day: 1 });
+        tache1.dateModification = null;
         tache1.libelle = 'tache commune 1';
         tache2 = new Tache();
         tache2.id = 2;
+        tache2.dateCreation = moment({ year: 2016, month: 5, day: 3 });
+        tache2.dateModification = null;
         tache2.libelle = 'tache commune 2';
         tache3 = new Tache();
         tache3.id = 3;
@@ -66,7 +70,7 @@ describe('Tache service', function(){
         });
     });
 
-    it('should create tache', function(){
+    it('should create tache', function(done){
         var tacheToCreate = {
             libelle: 'tache to create'
         };
@@ -78,6 +82,22 @@ describe('Tache service', function(){
             expect(tacheCreated.dateCreation).toBeDefined();
             expect(tacheCreated.dateCreation).not.toBeNull();
             expect(tacheCreated.libelle).toEqual(tacheToCreate.libelle);
-        })
+            done();
+        });
+    });
+
+    it('should update tache', function(done){
+        var tacheToUpdate = {
+            libelle: 'updated libelle'
+        };
+        serverPut('/taches/' + tache1.id, {tache: tacheToUpdate}, function(res, body){
+            var tacheUpdated = body.tache;
+            expect(res).toBeStatusOk();
+            expect(tacheUpdated.id).toEqual(tache1.id);
+            expect(tacheUpdated.dateModification).toBeDefined();
+            expect(tacheUpdated.dateModification).not.toBeNull();
+            expect(tacheUpdated.libelle).toEqual(tacheToUpdate.libelle);
+            done();
+        });
     });
 });

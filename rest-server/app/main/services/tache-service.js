@@ -21,8 +21,9 @@ exports.findAll = function(req, res){
 };
 
 exports.find = function(req, res){
+    var tacheId = parser.toInt(req.params.id);
     var criteria = new TacheCriteria({
-        id: parser.toInt(req.params.id)
+        id: tacheId
     });
     var tache = tacheProcessus.find(criteria);
     res.json({
@@ -36,27 +37,36 @@ exports.find = function(req, res){
 };
 
 exports.create = function(req, res){
-    //  parse body
+    //  create
     var jsonTache = req.body.tache;
     var tache = new Tache();
     tache.libelle = jsonTache.libelle;
-    //  create
     var tacheCreated = tacheProcessus.save(tache);
     //  respond
     res.json({
         tache: {
-            id: tache.id,
-            dateCreation: tache.dateCreation.toDate(),
-            libelle: tache.libelle
+            id: tacheCreated.id,
+            dateCreation: tacheCreated.dateCreation.toDate(),
+            libelle: tacheCreated.libelle
         }
     });
 };
 
 
 exports.update = function(req, res){
+    //  update tache
+    var jsonTache = req.body.tache;
+    var tacheId = parser.toInt(req.params.id);
+    var tache = tacheProcessus.find({id: tacheId});
+    tache.libelle = jsonTache.libelle;
+    var tacheUpdated = tacheProcessus.save(tache);
+    //  respond
     res.json({
         tache: {
-            
+            id: tacheUpdated.id,
+            dateCreation: tacheUpdated.dateCreation.toDate(),
+            dateModification: tacheUpdated.dateModification.toDate(),
+            libelle: tacheUpdated.libelle            
         }
     });
 };
