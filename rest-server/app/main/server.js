@@ -7,14 +7,33 @@ const tacheService = require('./services/tache-service');
 var server = null;
 var port = 8080;
 var running = false;
+var app = express();
 
 //  RestAPI
-var app = express();
 app.get('/', function (req, res) {
     res.send('Welcome AngularJS NodeJS Rest API');
 });
 app.get('/taches', tacheService.findAll);
+app.get('/taches/:id', tacheService.find);
 
+//  Gestion d'erreurs
+function logError(err, req, res, next){
+    console.error(err.stack);
+    next(err);
+}
+function errorHandler(err, req, res, next){
+    res.status(500);
+    res.send({
+        error: {
+            code: err.code,
+            message: err.message
+        }
+    });
+}
+app.use(logError);
+app.use(errorHandler);
+
+//  Démarrage / arrêt du serveur
 exports.start = function (customPort) {
     //  check if running
     if (running) {

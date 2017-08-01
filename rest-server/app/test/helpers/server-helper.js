@@ -14,10 +14,13 @@
     // servicePath: the path after the baseUrl (ex: http://localhost:500/taches/2 , baseUrl = 'http://localhost:500', servicePath = '/taches/2')
     // callback : function(response, body)
     global.serverGet = function (servicePath, callback) {
-        request.get(baseUrl +  servicePath, function(error, response, body){
-            if(error){
+        request.get(baseUrl + servicePath, function (error, response, body) {
+            if (error) {
                 throw new Error(error);
-            }else{
+            } if (response.statusCode === 500) {
+                var serverError = JSON.parse(body).error;
+                throw new Error(serverError.message);
+            } else {
                 var parsedBody = JSON.parse(body);
                 callback(response, parsedBody);
             }
