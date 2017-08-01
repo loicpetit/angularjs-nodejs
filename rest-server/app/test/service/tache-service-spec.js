@@ -1,10 +1,11 @@
 const Tache = require('../../main/modele/tache');
 
+const moment = require('moment');
 const store = require('../../main/dao/store');
 
 describe('Tache service', function(){
 
-    var tache1, tache2;
+    var tache1, tache2, tache3;
 
     beforeEach(function(){
         //  init server
@@ -18,6 +19,8 @@ describe('Tache service', function(){
         tache2.libelle = 'tache commune 2';
         tache3 = new Tache();
         tache3.id = 3;
+        tache3.dateCreation = moment({ year: 2016, month: 5, day: 5 });
+        tache3.dateModification = moment({ year: 2016, month: 6, day: 6 });
         tache3.libelle = 'tache 3';
         store.taches.push(tache1);
         store.taches.push(tache2);
@@ -43,11 +46,23 @@ describe('Tache service', function(){
         var searchedLibelle = 'commune';
         serverGet('/taches?libelle='+searchedLibelle, function(res, body){
             var taches = body.taches;
-            expect(res.statusCode).toEqual(200);
+            expect(res).toBeStatusOk();
             expect(taches.length).toEqual(2);
             expect(taches[0].libelle).toContainsString(searchedLibelle);
             expect(taches[1].libelle).toContainsString(searchedLibelle);
             done();
         });
     })
+
+    it('should find', function(done){
+        serverGet('/taches/'+tache3.id, function(res, body){
+            var tache = body.tache;
+            expect(res).toBeStatusOk();
+            expect(tache.id).toEqual(tache3.id);
+            expect(new Date(tache.dateCreation)).toEqual(tache3.dateCreation.toDate());
+            expect(new Date(tache.dateModification)).toEqual(tache3.dateModification.toDate());
+            expect(tache.libelle).toEqual(tache3.libelle);
+            done();
+        });
+    });
 });
