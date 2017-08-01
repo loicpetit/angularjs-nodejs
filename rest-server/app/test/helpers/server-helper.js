@@ -24,7 +24,7 @@
 
 
     // servicePath: the path after the baseUrl (ex: http://localhost:500/taches/2 , baseUrl = 'http://localhost:500', servicePath = '/taches/2')
-    //  jsonObject is the object to send to the server, it will be parsed in json
+    // jsonObject is the object to send to the server, it will be parsed in json
     // callback : function(response, body)
     global.serverPost = function (servicePath, jsonObject, callback) {
         request.post({
@@ -37,12 +37,23 @@
     }
 
     // servicePath: the path after the baseUrl (ex: http://localhost:500/taches/2 , baseUrl = 'http://localhost:500', servicePath = '/taches/2')
-    //  jsonObject is the object to send to the server, it will be parsed in json
+    // jsonObject is the object to send to the server, it will be parsed in json
     // callback : function(response, body)
     global.serverPut = function (servicePath, jsonObject, callback) {
         request.put({
             url: baseUrl + servicePath,
             body: jsonObject,
+            json: true
+        }, function (error, response, body) {
+            manageServerResponse(error, response, body, callback);
+        })
+    }
+
+    // servicePath: the path after the baseUrl (ex: http://localhost:500/taches/2 , baseUrl = 'http://localhost:500', servicePath = '/taches/2')
+    // callback : function(response, body)
+    global.serverDelete = function (servicePath, callback) {
+        request.delete({
+            url: baseUrl + servicePath,
             json: true
         }, function (error, response, body) {
             manageServerResponse(error, response, body, callback);
