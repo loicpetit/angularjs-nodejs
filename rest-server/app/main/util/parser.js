@@ -1,3 +1,7 @@
 exports.toInt = function(stringValue){
-    return parseInt(stringValue, 10);
+    var intValue = parseInt(stringValue, 10);
+    if(isNaN(intValue)){
+        return;
+    }
+    return intValue;
 }
