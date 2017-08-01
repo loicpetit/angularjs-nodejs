@@ -82,6 +82,7 @@ describe('Tache service', function(){
             expect(tacheCreated.dateCreation).toBeDefined();
             expect(tacheCreated.dateCreation).not.toBeNull();
             expect(tacheCreated.libelle).toEqual(tacheToCreate.libelle);
+            expect(store.taches.length).toEqual(4);
             done();
         });
     });
