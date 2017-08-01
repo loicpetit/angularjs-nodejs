@@ -1,11 +1,10 @@
-module.exports = class TacheCriteria {
+const EntiteCriteria = require('./entite-criteria');
+
+module.exports = class TacheCriteria extends EntiteCriteria {
     constructor(criteria) {
-        this.id = null;
+        super(criteria);
         this.libelle = null;
         if (criteria) {
-            if (criteria.id !== undefined){
-                this.id = criteria.id;
-            }
             if (criteria.libelle !== undefined){
                 this.libelle = criteria.libelle;
             }
