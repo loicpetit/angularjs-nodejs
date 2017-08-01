@@ -20,8 +20,8 @@ app.get('/', function (req, res) {
 app.get('/taches', tacheService.findAll);
 app.post('/taches', tacheService.create)
 app.get('/taches/:id', tacheService.find);
-app.put('/tache/:id', tacheService.update);
-app.delete('/tache/:id', tacheService.delete);
+app.put('/taches/:id', tacheService.update);
+app.delete('/taches/:id', tacheService.delete);
 
 //  Gestion d'erreurs
 function logError(err, req, res, next){
