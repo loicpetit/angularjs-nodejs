@@ -20,6 +20,7 @@
   "scripts": {
     "start": "node app/main/start.js",
     "debug": "node --debug-brk app/main/start.js",
-    "test": "node --debug-brk node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=./jasmine.json"
+    "test": "jasmine JASMINE_CONFIG_PATH=./jasmine.json",
+    "test-debug": "node --debug-brk node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=./jasmine.json"
   }
 }
