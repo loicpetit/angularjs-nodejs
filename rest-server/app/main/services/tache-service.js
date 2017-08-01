@@ -1,3 +1,4 @@
+const Tache = require('../modele/tache');
 const TacheCriteria = require('../dao/criteria/tache-criteria');
 
 const parser = require('../util/parser');
@@ -17,7 +18,7 @@ exports.findAll = function(req, res){
     res.json({
         taches: taches
     });
-}
+};
 
 exports.find = function(req, res){
     var criteria = new TacheCriteria({
@@ -28,8 +29,39 @@ exports.find = function(req, res){
         tache: {
             id: tache.id,
             dateCreation: tache.dateCreation.toDate(),
-            dateModification: tache.dateModification.toDate(),
+            dateModification: tache.dateModification ? tache.dateModification.toDate() : null,
             libelle: tache.libelle
         }
     });
-}
+};
+
+exports.create = function(req, res){
+    //  parse body
+    var jsonTache = req.body.tache;
+    var tache = new Tache();
+    tache.libelle = jsonTache.libelle;
+    //  create
+    var tacheCreated = tacheProcessus.save(tache);
+    //  respond
+    res.json({
+        tache: {
+            id: tache.id,
+            dateCreation: tache.dateCreation.toDate(),
+            libelle: tache.libelle
+        }
+    });
+};
+
+
+exports.update = function(req, res){
+    res.json({
+        tache: {
+            
+        }
+    });
+};
+
+exports.delete = function(req, res){
+    res.statusCode = 204;
+    res.send();
+};

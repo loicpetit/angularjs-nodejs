@@ -65,4 +65,19 @@ describe('Tache service', function(){
             done();
         });
     });
+
+    it('should create tache', function(){
+        var tacheToCreate = {
+            libelle: 'tache to create'
+        };
+        serverPost('/taches', {tache: tacheToCreate}, function(res, body){
+            var tacheCreated = body.tache;
+            expect(res).toBeStatusOk();
+            expect(tacheCreated.id).toBeDefined();
+            expect(tacheCreated.id).not.toBeNull();
+            expect(tacheCreated.dateCreation).toBeDefined();
+            expect(tacheCreated.dateCreation).not.toBeNull();
+            expect(tacheCreated.libelle).toEqual(tacheToCreate.libelle);
+        })
+    });
 });
