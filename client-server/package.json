@@ -1,0 +1,23 @@
+{
+  "name": "angularjs-nodejs-client-server",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "Client server of an angular application",
+  "keywords": [],
+  "dependencies": {
+    "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.0.36",
+    "@types/jasmine": "^2.5.53",
+    "jasmine": "^2.6.0",
+    "jasmine-mockdate": "^0.1.0"
+  },
+  "main": "app/main/start.js",
+  "scripts": {
+    "start": "node app/main/start.js",
+    "debug": "node --debug-brk app/main/start.js",
+    "test": "jasmine JASMINE_CONFIG_PATH=./jasmine.json",
+    "test-debug": "node --debug-brk node_modules/jasmine/bin/jasmine.js JASMINE_CONFIG_PATH=./jasmine.json"
+  }
+}
