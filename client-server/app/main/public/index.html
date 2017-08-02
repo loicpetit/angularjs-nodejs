@@ -1,26 +1,52 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>AngularJS NodeJS App</title>
     <!-- CSS -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
-        <h1>AngularJS NodeJS App</h1>
-        <h2>Home</h2>
-    </header>
-    <section>
-        <article>
-            <p>Welcome !</p>
-        </article>
-    </section>
-    <aside>
-    </aside>
+
+<body style="padding-top: 70px; padding-bottom: 30px;">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">AngularJS NodeJS</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Taches</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <section class="col-sm-9">
+                <article>
+                    <p>Welcome !</p>
+                </article>
+            </section>
+            <aside class="col-sm-3">
+                Menu
+            </aside>
+        </div>
+    </div>
     <!-- Scripts -->
     <script src="/jquery/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/angular/angular.min.js"></script>
     <script src="/angular-ui-router/angular-ui-router.min.js"></script>
 </body>
+
 </html>
