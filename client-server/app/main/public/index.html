@@ -8,7 +8,7 @@
     <link href="/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
 
-<body style="padding-top: 70px; padding-bottom: 30px;">
+<body style="padding-top: 70px; padding-bottom: 30px;" ng-app="angularjs-nodejs" ng-controller="MainController">
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -24,7 +24,7 @@
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Taches</a>
+                        <a ui-sref="taches">Taches</a>
                     </li>
                 </ul>
             </div>
@@ -32,21 +32,25 @@
     </nav>
     <div class="container">
         <div class="row">
-            <section class="col-sm-9">
-                <article>
-                    <p>Welcome !</p>
-                </article>
+            <section class="col-sm-9" ui-view>
             </section>
-            <aside class="col-sm-3">
-                Menu
+            <aside class="col-sm-3" ui-view="aside">
             </aside>
         </div>
     </div>
-    <!-- Scripts -->
+    <!-- Libs -->
     <script src="/jquery/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="/angular/angular.min.js"></script>
     <script src="/angular-ui-router/angular-ui-router.min.js"></script>
+    <script src="/angular-ui-bootstrap/ui-bootstrap.js"></script>
+    <!-- Angular config -->
+    <script src="app.js"></script>
+    <script src="routing.js"></script>
+    <!-- Angular components -->
+    <script src="/main-controller.js"></script>
+    <script src="/views/home/controller.js"></script>
+    <script src="/views/taches/controller.js"></script>
 </body>
 
 </html>
