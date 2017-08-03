@@ -1,0 +1,22 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Libelle</th>
+            <th class="text-right" style="width: 60px">
+                <button type="button" title="Créer une tâche" class="btn btn-xs btn-success" ng-click="tachesDirective.add()">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="tache in tachesDirective.values">
+            <td ng-bind="tache.libelle"></td>
+            <td class="text-right">
+                <button type="button" title="Supprimer une tâche" class="btn btn-xs btn-danger" ng-click="tachesDirective.delete(tache)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

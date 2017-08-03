@@ -2,21 +2,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('home', {
             url: '/',
-            views: {
-                "": {
-                    controller: 'HomeController',
-                    templateUrl: '/views/home/view.html'
-                },
-                "aside": {
-                    controller: 'HomeController',
-                    templateUrl: '/views/home/aside.html'
-                }
-            }
+            controller: 'HomeViewController as homeView',
+            templateUrl: '/views/home/view.html'
         })
         .state('taches', {
             url: '/taches',
-            controller: 'TachesController',
-            templateUrl: '/views/taches/view.html'
+            views: {
+                "": {
+                    controller: 'TachesViewController as tachesView',
+                    templateUrl: '/views/taches/view.html'
+                },
+                "aside": {
+                    controller: 'TachesViewController as tachesView',
+                    templateUrl: '/views/taches/aside.html'
+                }
+            }
         });
     // Redirection vers l'accueil en cas de route introuvable
     $urlRouterProvider.otherwise('/');

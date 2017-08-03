@@ -1,3 +1,3 @@
-app.controller('HomeController',[function(){
-    console.log('HomeController');
+app.controller('HomeViewController',[function(){
+    console.log('HomeViewController');
 }]);

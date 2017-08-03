@@ -1,3 +1,3 @@
-app.controller('TachesController',[function(){
-    console.log('TachesController');
+app.controller('TachesViewController',['TachesService', function(TachesService){
+    this.taches = angular.copy(TachesService.findAll());
 }]);
