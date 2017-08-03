@@ -4,7 +4,9 @@ app.directive('taches', [function () {
         templateUrl: '/directives/taches/view.html',
         scope: true,
         bindToController: {
-            values: '='
+            values: '=',
+            onTacheSelected: '&',// expect callback(tache)
+            onTacheUnselected: '&'//   only when recliking the same tache, expect callback(tache)
         },
         controller: 'TachesDirectiveController',
         controllerAs: 'tachesDirective'
