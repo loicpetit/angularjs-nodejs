@@ -7,15 +7,18 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         })
         .state('taches', {
             url: '/taches',
+            controller: 'TachesViewController as tachesView',
+            templateUrl: '/views/taches/view.html'
+        })
+        .state('taches.tache', {
             views: {
-                "": {
-                    controller: 'TachesViewController as tachesView',
-                    templateUrl: '/views/taches/view.html'
-                },
-                "aside": {
-                    controller: 'TachesViewController as tachesView',
-                    templateUrl: '/views/taches/aside.html'
+                "aside@": {
+                    controller: 'TacheViewController as tacheView',
+                    templateUrl: '/views/tache/view.html'
                 }
+            },
+            params: {
+                tache: null
             }
         });
     // Redirection vers l'accueil en cas de route introuvable
