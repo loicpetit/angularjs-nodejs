@@ -13,7 +13,7 @@
         <tr ng-repeat="tache in tachesDirective.values" ng-click="tachesDirective.selectTache(tache)" ng-class="tache.selected ? 'info' : ''">
             <td ng-bind="tache.libelle"></td>
             <td class="text-right">
-                <button type="button" title="Supprimer une tâche" class="btn btn-xs btn-danger" ng-click="tachesDirective.delete(tache)">
+                <button type="button" title="Supprimer une tâche" class="btn btn-xs btn-danger" ng-click="tachesDirective.delete($event, tache)">
                     <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </td>

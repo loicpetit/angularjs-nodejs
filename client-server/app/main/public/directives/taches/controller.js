@@ -1,5 +1,5 @@
-app.controller('TachesDirectiveController', [function () {
-    this.unselectAll = function() {
+app.controller('TachesDirectiveController', ['ConfirmModal', function (ConfirmModal) {
+    this.unselectAll = function () {
         for (var i in this.values) {
             this.values[i].selected = false;
         }
@@ -17,8 +17,18 @@ app.controller('TachesDirectiveController', [function () {
     this.add = function () {
         alert('add');
     };
-    this.delete = function (tache) {
-        alert('delete: ' + tache.id);
+    this.delete = function ($event, tache) {
+        $event.stopPropagation();
+        ConfirmModal.open('Supprimer une tâche', 'Êtes-vous sûr de vouloir supprimer cette tâche ?').then(function () {
+            console.log('Supprime tache ' + tache.id);
+            //  delete
+            //  remove in current list
+            this.values = this.values.filter(function (item, index, array) {
+                return item.id !== tache.id;
+            });
+        }.bind(this), function () {
+            //  Ne rien faire si annulé
+        });
     };
     //  INIT
     this.unselectAll();
