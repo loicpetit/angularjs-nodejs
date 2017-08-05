@@ -1,13 +1,10 @@
-app.controller('ModalTacheController', ['$uibModalInstance', function ($uibModalInstance) {
+app.controller('ModalTacheController', ['$uibModalInstance', 'TacheService', function ($uibModalInstance, TacheService) {
     this.tache = {
         libelle: null
     };
 
     this.isValidated = function(){
-        if(this.tache.libelle === null || this.tache.libelle.trim() === ''){
-            return false;
-        }
-        return true;
+        return TacheService.validate(this.tache);
     }
 
     this.close = function () {

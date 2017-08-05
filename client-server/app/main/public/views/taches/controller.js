@@ -1,5 +1,8 @@
-app.controller('TachesViewController', ['$state', 'TachesService', function ($state,TachesService) {
-    this.taches = angular.copy(TachesService.findAll());
+app.controller('TachesViewController', ['$state', 'TacheService', function ($state, TacheService) {
+    this.taches = [];
+    TacheService.findAll().then(function(taches){
+        this.taches = taches;
+    }.bind(this));
 
     this.onTacheSelected = function (tache) {
         $state.go('taches.tache', {
