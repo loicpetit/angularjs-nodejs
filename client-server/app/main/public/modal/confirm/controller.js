@@ -1,4 +1,4 @@
-app.controller('ModalConfirmController', ['$uibModalInstance', 'message', function ($uibModalInstance, titre, message) {
+app.controller('ModalConfirmController', ['$uibModalInstance', 'titre', 'message', function ($uibModalInstance, titre, message) {
     this.message = message;
     this.titre = titre;
 

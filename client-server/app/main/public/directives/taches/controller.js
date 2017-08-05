@@ -1,4 +1,4 @@
-app.controller('TachesDirectiveController', ['ConfirmModal', function (ConfirmModal) {
+app.controller('TachesDirectiveController', ['ConfirmModal', 'TacheModal', function (ConfirmModal, TacheModal) {
     this.unselectAll = function () {
         for (var i in this.values) {
             this.values[i].selected = false;
@@ -15,7 +15,11 @@ app.controller('TachesDirectiveController', ['ConfirmModal', function (ConfirmMo
         }
     }
     this.add = function () {
-        alert('add');
+        TacheModal.open().then(function(tache){
+            console.log('add tache: ', tache);
+            //  save
+            this.values.push(tache);
+        }.bind(this));
     };
     this.delete = function ($event, tache) {
         $event.stopPropagation();
