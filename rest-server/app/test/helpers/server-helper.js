@@ -1,16 +1,25 @@
 (function (global) {
+    const http = require('http');
     const request = require('request');
 
-    const server = require('../../main/server');
+    const app = require('../../main/app');
     const store = require('../../main/dao/store');
 
     const port = 500;
     const baseUrl = 'http://localhost:' + port;
 
+    var server = null;
+
     global.serverRestart = function () {
-        server.stop();
-        server.start(port);
+        if (server !== null) {
+            server.close();
+            server = null;
+            console.log('Server closed');
+        }
         store.clear();
+        server = http.createServer(app).listen(port, function () {
+            console.log('Server listening on port ' + port);
+        });
     }
 
     // servicePath: the path after the baseUrl (ex: http://localhost:500/taches/2 , baseUrl = 'http://localhost:500', servicePath = '/taches/2')

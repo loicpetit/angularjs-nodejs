@@ -1,0 +1,17 @@
+{
+  "name": "angularjs-nodejs",
+  "version": "0.0.1",
+  "license": "MIT",
+  "description": "AngularJS NodeJS App",
+  "keywords": [],
+  "dependencies": {
+    "express": "^4.14.0",
+    "moment": "^2.18.1"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+      "install": "cd ./rest-server && npm install && cd ../client-server && npm install",
+      "start": "node ./start.js"
+  }
+}
