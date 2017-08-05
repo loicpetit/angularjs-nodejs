@@ -1,6 +1,9 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const http = require('http');
+const moment = require('moment');
+
+const Tache = require('./modele/tache');
 
 const store = require('./dao/store');
 const tacheService = require('./services/tache-service');
@@ -24,11 +27,11 @@ app.put('/taches/:id', tacheService.update);
 app.delete('/taches/:id', tacheService.delete);
 
 //  Gestion d'erreurs
-function logError(err, req, res, next){
+function logError(err, req, res, next) {
     console.error(err.stack);
     next(err);
 }
-function errorHandler(err, req, res, next){
+function errorHandler(err, req, res, next) {
     res.status(500);
     res.send({
         error: {
@@ -51,8 +54,8 @@ exports.start = function (customPort) {
     if (customPort) {
         port = customPort;
     }
-    //  Clear store
-    store.clear();
+    //  Store
+    setupStore();
     //  Launch server
     server = http.createServer(app).listen(port, function () {
         running = true;
@@ -74,4 +77,21 @@ exports.restart = function () {
         exports.close();
     }
     exports.start();
+}
+
+function setupStore() {
+    store.clear();
+    //  Taches
+    tache1 = new Tache();
+    tache1.id = 1;
+    tache1.dateCreation = moment({ year: 2016, month: 1, day: 1 });
+    tache1.dateModification = moment({ year: 2016, month: 2, day: 2 });
+    tache1.libelle = 'tache 1 commune';
+    store.taches.push(tache1);
+    tache2 = new Tache();
+    tache2.id = 2;
+    tache2.dateCreation = moment({ year: 2016, month: 3, day: 3 });
+    tache2.dateModification = moment({ year: 2016, month: 4, day: 4 });
+    tache2.libelle = 'tache 2';
+    store.taches.push(tache2);
 }

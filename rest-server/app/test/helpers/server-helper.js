@@ -2,6 +2,7 @@
     const request = require('request');
 
     const server = require('../../main/server');
+    const store = require('../../main/dao/store');
 
     const port = 500;
     const baseUrl = 'http://localhost:' + port;
@@ -9,6 +10,7 @@
     global.serverRestart = function () {
         server.stop();
         server.start(port);
+        store.clear();
     }
 
     // servicePath: the path after the baseUrl (ex: http://localhost:500/taches/2 , baseUrl = 'http://localhost:500', servicePath = '/taches/2')
