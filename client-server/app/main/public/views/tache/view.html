@@ -1,0 +1,28 @@
+<section style="margin-top: 20px;">
+    <button type="button" title="Fermer" class="btn btn-default pull-right" ng-show="!tacheView.isEdit" ng-click="tacheView.close()">
+        <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <button type="button" title="Editer" class="btn btn-default pull-right" ng-show="!tacheView.isEdit" ng-click="tacheView.edit()">
+        <span class="glyphicon glyphicon-edit"></span>
+    </button>
+    <button type="button" title="Enregistrer" class="btn btn-success pull-right" ng-show="tacheView.isEdit" ng-click="tacheView.save()">
+        <span class="glyphicon glyphicon-ok-circle"></span>
+    </button>
+    <button type="button" title="Anuller" class="btn btn-danger pull-right" ng-show="tacheView.isEdit" ng-click="tacheView.cancel()">
+        <span class="glyphicon glyphicon-remove-circle"></span>
+    </button>
+    <br><br>
+    <form ng-if="tacheView.tache" style="padding: 10px; border-left: 1px solid #DDD;">
+        <div class="form-group">
+            <label>Identifiant</label>
+            <p class="form-label" ng-bind="tacheView.tache.id"></p>
+            <label for="tacheViewLibelle">Libelle</label>
+            <input type="text" id="tacheViewLibelle" class="form-control" ng-model="tacheView.copy.libelle" ng-show="tacheView.isEdit">
+            <p class="form-label" ng-bind="tacheView.tache.libelle" ng-show="!tacheView.isEdit"></p>
+            <label>Date de création</label>
+            <p class="form-label" ng-bind="tacheView.tache.dateCreation | date:'dd/MM/yyyy'"></p>
+            <label>Date de modification</label>
+            <p class="form-label" ng-bind="tacheView.tache.dateModification | date:'dd/MM/yyyy'"></p>
+        </div>
+    </form>
+</section>

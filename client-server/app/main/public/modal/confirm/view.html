@@ -1,0 +1,10 @@
+<div class="modal-header" ng-if="modalConfirm.titre">
+    <h3 class="modal-title" ng-bind="modalConfirm.titre"></h3>
+</div>
+<div class="modal-body" ng-if="modalConfirm.message">
+    <p ng-bind="modalConfirm.message"></p>
+</div>
+<div class="modal-footer" style="text-align: center">
+    <button type="button" class="btn btn-success" ng-click="modalConfirm.close()">Oui</button>
+    <button type="button" class="btn btn-danger" ng-click="modalConfirm.dismiss()">Non</button>
+</div>
