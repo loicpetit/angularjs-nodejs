@@ -1,33 +1,27 @@
-app.factory('TacheService', ['$q', function ($q) {
+app.factory('TacheService', ['$rootScope', 'TacheResource', function ($rootScope, TacheResource) {
+
+    var TACHE_UPDATED_EVENT = 'tache.updated';
 
     var factory = {};
 
-    var taches = [
-        {
-            id: 1,
-            dateCreation: new Date(2017, 8, 8),
-            dateModification: new Date(2017, 9, 9),
-            libelle: 'tache 1'
-        },
-        {
-            id: 2,
-            dateCreation: new Date(2017, 10, 10),
-            dateModification: null,
-            libelle: 'tache 2'
-        }
-    ];
-
-    var sequence = 2;
-
-    function getNextId(){
-        sequence++;
-        return sequence;
+    /**
+     * Recherche toutes les taches par defaut.
+     * @criteria: un objet pour filtrer les taches, optionnel
+     */
+    factory.findAll = function (criteria) {
+        return TacheResource.findAll(criteria).$promise.then(function (response) {
+            return response.taches;
+        });
     }
 
-    factory.findAll = function () {
-        var deferred = $q.defer();
-        deferred.resolve(angular.copy(taches));
-        return deferred.promise;
+    /**
+     * Recherche une tache
+     * @id: l'id de la tache à trouver
+     */
+    factory.find = function (id) {
+        return TacheResource.find({id: id}).$promise.then(function (response) {
+            return response.tache;
+        });
     }
 
     /**
@@ -53,54 +47,33 @@ app.factory('TacheService', ['$q', function ($q) {
         }
     }
 
+    /**
+     * Crée une nouvelle tache
+     */
     factory.create = function (tache) {
-        var deferred = $q.defer();
-        factory.check(tache);
-        tache.id = getNextId();
-        tache.dateCreation = new Date();
-        var tacheToCreate = angular.copy(tache);
-        taches.push(tacheToCreate);
-        deferred.resolve(tache);
-        return deferred.promise;
+        return TacheResource.create({}, { tache: tache }).$promise.then(function (response) {
+            return response.tache
+        });
     }
 
     factory.update = function (tache) {
-        var deferred = $q.defer();
-        factory.check(tache);
-        var tacheFound = false;
-        for (var i in taches) {
-            var tacheToUpdate = taches[i];
-            if (tacheToUpdate.id === tache.id) {
-                tacheToUpdate.libelle = tache.libelle;
-                tacheToUpdate.dateModification = new Date();
-                tacheFound = true;
-                deferred.resolve(angular.copy(tacheToUpdate));
-                break;
-            }
-        }
-        if (!tacheFound) {
-            deferred.reject('Tache non trouvée');
-        }
-        return deferred.promise;
+        return TacheResource.update({id: tache.id}, { tache: tache }).$promise.then(function (response) {
+            $rootScope.$broadcast(TACHE_UPDATED_EVENT, response.tache)
+            return response.tache
+        });
     }
 
     factory.delete = function (tacheId) {
-        var deferred = $q.defer();
-        var indexToDelete = null;
-        for (var i in taches) {
-            var tache = taches[i];
-            if (tache.id === tacheId) {
-                indexToDelete = i;
-                break;
-            }
-        }
-        if (indexToDelete !== null) {
-            taches.splice(indexToDelete, 1);
-            deferred.resolve();
-        }else{
-            deferred.reject('Tache non trouvée');
-        }
-        return deferred.promise;
+         return TacheResource.delete({id: tacheId}).$promise;
+    }
+
+    /**
+     * Bind un scope sur l'update d'une tache
+     * @$scope: le scope courant
+     * @callback: function(evt, tache)
+     */
+    factory.onTacheUpdated = function($scope, callback){
+        $scope.$on(TACHE_UPDATED_EVENT, callback);
     }
 
     return factory;

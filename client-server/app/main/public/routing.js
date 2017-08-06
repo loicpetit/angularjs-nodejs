@@ -18,7 +18,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
                 }
             },
             params: {
-                tache: null
+                tacheId: null
+            },
+            resolve: {
+                tache: function($stateParams, TacheService){
+                    return TacheService.find($stateParams.tacheId);
+                }
             }
         });
     // Redirection vers l'accueil en cas de route introuvable

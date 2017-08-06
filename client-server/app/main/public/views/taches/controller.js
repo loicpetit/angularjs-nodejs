@@ -6,7 +6,7 @@ app.controller('TachesViewController', ['$state', 'TacheService', function ($sta
 
     this.onTacheSelected = function (tache) {
         $state.go('taches.tache', {
-            tache: tache
+            tacheId: tache.id
         });
     }
     this.onTacheUnselected = function (tache) {

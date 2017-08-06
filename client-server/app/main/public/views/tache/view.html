@@ -17,12 +17,12 @@
             <label>Identifiant</label>
             <p class="form-label" ng-bind="tacheView.tache.id"></p>
             <label for="tacheViewLibelle">Libelle</label>
-            <input type="text" id="tacheViewLibelle" class="form-control" ng-model="tacheView.copy.libelle" ng-show="tacheView.isEdit">
+            <input type="text" id="tacheViewLibelle" class="form-control" autofocus ng-model="tacheView.copy.libelle" ng-show="tacheView.isEdit">
             <p class="form-label" ng-bind="tacheView.tache.libelle" ng-show="!tacheView.isEdit"></p>
             <label>Date de création</label>
             <p class="form-label" ng-bind="tacheView.tache.dateCreation | date:'dd/MM/yyyy'"></p>
             <label>Date de modification</label>
-            <p class="form-label" ng-bind="tacheView.tache.dateModification | date:'dd/MM/yyyy'"></p>
+            <p class="form-label" ng-bind="tacheView.tache.dateModification || '-' | date:'dd/MM/yyyy'"></p>
         </div>
     </form>
 </section>
